@@ -1,9 +1,16 @@
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, Pressable, Image, StyleSheet, ScrollView } from "react-native";
-const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
+const MealItem = ({ title, imageUrl, duration, complexity, affordability,id }) => {
 
+    const navigation = useNavigation();
+    const pressHanlder = ()=>{
+        navigation.navigate('MealDetails',{
+            mealId:id
+        })  
+    }
     return (
         <View style={styles.mealItem}>
-            <Pressable android_ripple={{color:'#ccc'}}>
+            <Pressable android_ripple={{color:'#ccc'}} onPress={pressHanlder}>
                 <View style={styles.innerContainer}>
                 <View style={styles.imageContainer}>
                     <Image source={{ uri: imageUrl }} style={styles.image} />
